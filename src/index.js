@@ -24,6 +24,21 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             name: 'mu',
+        },
+        {
+            name: 'ma',
+        },
+        {
+            name: 'me',
+        },
+        {
+            name: 'mi',
+        },
+        {
+            name: 'mo',
+        },
+        {
+            name: 'mu',
         }
     ]
     console.log('%c Card Array', ccsConsole, cardArray[3]);
@@ -58,12 +73,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    createBoard();
+    function checkForMatch() {
+        const cards = document.querySelectorAll('div');
+        const optionOneId = cardsChosenId[0];
+        const optionTwoId = cardsChosenId[1];
+            console.log('%c Const cards', ccsConsole, cards);
+            console.log('%c optionOneId', ccsConsole, optionOneId);
+            console.log('%c optionTwoId', ccsConsole, optionTwoId);
+        
+        /** Comprueba que el usuria no de click do vesces a la misma carta */
+        if(optionOneId == optionTwoId) {
+            cards[optionOneId].setAttribute('class', 'card-blank');
+            cards[optionTwoId].setAttribute('class', 'card-blank')
+            alert('You have clicked the same image!')
+            console.log('%c Const cards', ccsConsole, cards);
+        }
 
-    function flipCard() {
-        console.log('%c Card Click', ccsConsole, 'click');
+
+        /* if(cardsChosen[0] == cardsChosen[1]){
+            console.log('Son iguales');
+        } else {
+            console.log('No son iguales')
+        } */
     }
 
+
+    
+
+    function flipCard() {
+        let cardId = this.getAttribute('data-id');
+        cardsChosen.push(cardArray[cardId].name);
+        cardsChosenId.push(cardId);
+        this.setAttribute('class', 'card-chosen')
+
+        if (cardsChosen.length === 2) {
+            setTimeout( checkForMatch, 3000);
+        }
+
+        console.log('%c CardId', ccsConsole, cardId);
+        console.log('%c cardsChosen', ccsConsole, cardsChosen);
+        console.log('%c cardsChosenId', ccsConsole, cardsChosenId);
+        console.log('%c This Card', ccsConsole, this);
+    
+    }
+
+    createBoard();
 
 
 
