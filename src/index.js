@@ -80,13 +80,41 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('%c Const cards', ccsConsole, cards);
             console.log('%c optionOneId', ccsConsole, optionOneId);
             console.log('%c optionTwoId', ccsConsole, optionTwoId);
-        
+            console.count('Count Console')
+            printOn('moves', add())
+           
+            /* counter.increse()
+            console.log('%c Counter', ccsConsole, counter.getCount());
+         */
         /** Comprueba que el usuria no de click do vesces a la misma carta */
         if(optionOneId == optionTwoId) {
             cards[optionOneId].setAttribute('class', 'card-blank');
             cards[optionTwoId].setAttribute('class', 'card-blank')
-            alert('You have clicked the same image!')
+            //alert('You have clicked the same image!')
+            cardsChosen = []
+            cardsChosenId = []
+            cards[optionOneId].setAttribute('class', 'card');
+            cards[optionTwoId].setAttribute('class', 'card')
             console.log('%c Const cards', ccsConsole, cards);
+        } else if ( cardsChosen [0] === cardsChosen[1]) {
+            //alert('You have matched this cards!')
+            cards[optionOneId].setAttribute('class', 'card-won');
+            cards[optionTwoId].setAttribute('class', 'card-won');
+            cardsWon.push(cardsChosen[0])
+            cardsWon.push(cardsChosen[1])
+            console.log('%c cardsWon Array', ccsConsole, cardsWon);
+            cardsChosen = []
+            cardsChosenId = []
+                console.log('%c cardsChosen', ccsConsole, cardsChosen);
+                console.log('%c cardsChosenId', ccsConsole, cardsChosenId);
+                
+            
+        } else {
+            //alert('Tray Again');
+            cards[optionOneId].setAttribute('class', 'card');
+            cards[optionTwoId].setAttribute('class', 'card');
+            cardsChosen = []
+            cardsChosenId = []
         }
 
 
@@ -97,7 +125,34 @@ document.addEventListener('DOMContentLoaded', () => {
         } */
     }
 
+    /* function makeCounter(){
+        let count = 0;
+        return {
+          increse: function () {
+            count = count + 1;
+          },
+          getCount: function () {
+            return count;
+          },
+        };
+      }
+      let counter = makeCounter(); */
 
+      const add = (function () {
+        let counter = 0;
+        return function () {
+          counter += 1;
+          return counter;
+        }
+      }
+      )();
+      
+      function printOn(htmlId, callback) {
+        const screen = document.getElementById(htmlId);
+        screen.textContent = ` ${callback}`
+      }
+
+    
     
 
     function flipCard() {
@@ -107,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.setAttribute('class', 'card-chosen')
 
         if (cardsChosen.length === 2) {
-            setTimeout( checkForMatch, 3000);
+            setTimeout( checkForMatch, 0);
         }
 
         console.log('%c CardId', ccsConsole, cardId);

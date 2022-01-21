@@ -1,12 +1,15 @@
 
 .card {
+    color: palegreen;
+    background-color: palegreen;
     width: 50px;
     height: 100px;
-    border: 1px solid ;
+    border: 2px solid coral ;
     margin: 4px;
     padding: 10px;
-    display: inline-block
+    display: inline-block;
 }
+
 .card-chosen {
     width: 50px;
     height: 100px;
@@ -25,4 +28,13 @@
     padding: 10px;
     display: inline-block;
     background-color: red;
+}
+.card-won {
+    width: 50px;
+    height: 100px;
+    border: 1px solid ;
+    margin: 4px;
+    padding: 10px;
+    display: inline-block;
+    background-color: greenyellow;
 }
