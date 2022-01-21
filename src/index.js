@@ -88,41 +88,32 @@ document.addEventListener('DOMContentLoaded', () => {
          */
         /** Comprueba que el usuria no de click do vesces a la misma carta */
         if(optionOneId == optionTwoId) {
-            cards[optionOneId].setAttribute('class', 'card-blank');
-            cards[optionTwoId].setAttribute('class', 'card-blank')
-            //alert('You have clicked the same image!')
-            cardsChosen = []
-            cardsChosenId = []
             cards[optionOneId].setAttribute('class', 'card');
             cards[optionTwoId].setAttribute('class', 'card')
-            console.log('%c Const cards', ccsConsole, cards);
         } else if ( cardsChosen [0] === cardsChosen[1]) {
             //alert('You have matched this cards!')
             cards[optionOneId].setAttribute('class', 'card-won');
             cards[optionTwoId].setAttribute('class', 'card-won');
-            cardsWon.push(cardsChosen[0])
-            cardsWon.push(cardsChosen[1])
-            console.log('%c cardsWon Array', ccsConsole, cardsWon);
-            cardsChosen = []
-            cardsChosenId = []
-                console.log('%c cardsChosen', ccsConsole, cardsChosen);
-                console.log('%c cardsChosenId', ccsConsole, cardsChosenId);
-                
-            
+            cards[optionOneId].removeEventListener('click', flipCard);
+            cards[optionTwoId].removeEventListener('click', flipCard);
+            cardsWon.push(cardsChosen)
+            //cardsWon.push(cardsChosen[1])
+            console.log('%c cardsWon Array', ccsConsole, cardsWon);  
         } else {
             //alert('Tray Again');
             cards[optionOneId].setAttribute('class', 'card');
             cards[optionTwoId].setAttribute('class', 'card');
-            cardsChosen = []
-            cardsChosenId = []
         }
 
+        cardsChosen = []
+        cardsChosenId = []
 
-        /* if(cardsChosen[0] == cardsChosen[1]){
-            console.log('Son iguales');
-        } else {
-            console.log('No son iguales')
-        } */
+        printOn('result', cardsWon.length);
+
+        if (cardsWon.length === cardArray.length/2) {
+            printOn('result', 'Felicidades, has terminado el juego');
+        }
+        
     }
 
     /* function makeCounter(){
@@ -162,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.setAttribute('class', 'card-chosen')
 
         if (cardsChosen.length === 2) {
-            setTimeout( checkForMatch, 0);
+            setTimeout( checkForMatch, 1000);
         }
 
         console.log('%c CardId', ccsConsole, cardId);
